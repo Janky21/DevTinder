@@ -27,9 +27,8 @@ const Login = () => {
       );
       dispatch(addUser(res.data));
       return navigate("/");
-    } catch (error) {
-      setError(error?.response?.data);
-      console.error(error);
+    } catch (err) {
+      setError(err?.response?.data || "Something went wrong");
     }
   };
 
@@ -40,7 +39,7 @@ const Login = () => {
         { firstName, lastName, email, password },
         { withCredentials: true }
       );
-      dispatch(addUser(res.data.data));
+      dispatch(addUser(res?.data?.data));
       return navigate("/profile");
     } catch (error) {
       setError(error?.response?.data);

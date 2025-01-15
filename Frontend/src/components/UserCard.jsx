@@ -5,7 +5,7 @@ import { removeUserFromFeed } from "../utils/feedSLice";
 
 const UserCard = ({ user }) => {
   const { firstName, lastName, age, gender, about, photoUrl,_id } = user;
-  console.log(user);
+  //console.log(user);
   const dispatch = useDispatch();
 
   const handleSendRequests = async (status, userId) => {
