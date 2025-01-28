@@ -29,9 +29,11 @@
       - pm2 logs   --> to get all the logs in case of issue
       - pm2 flush <nameOfProcess>    -->to clear all the logs
       - pm2 list, pm2 stop <name>, pm2 delete <name>
-      - pm2 start npm --name "devTinder-backend" -- start  --> rename a process
+      - pm2 start npm --name "devTinder-backend" -- start  --> name a process
+      - Enable port 7777 on your instance
 
-    #Frontend --> Backend
+# Frontend to Backend Connection
+
       - Frontend is running on http://54.172.97.209/
       - Backend is running on http://54.172.97.209:7777
       - so we need to map our backend to http://54.172.97.209:7777 to http://54.172.97.209/api/ by using nginx proxy pass.
@@ -39,7 +41,7 @@
       - restart the nginx --> sudo systemctl restart nginx
       - modify the BASE_URL in frontend folder to "/api".
 
-  # Nginx config code
+# Nginx config code
 
       - server {
     listen 80;
@@ -59,4 +61,29 @@
         index index.html;
     }
 
-  }
+}
+
+# Adding a custom Domain name
+
+- Purchase domain name from domain provider(eg:-godaddy)
+- signup on cloudflare and add a new domain name
+- change the nameservers on godaddy and point it out to cloudflare
+- wait for sometime till your nameservers are updated
+- go to DNS record and point A --> devtinder.in --> AWS instance public IP add.
+- Enable SSL cert on frontend and backend.
+
+# Sending Emails via SES
+
+    - Create a IAM user
+    - Give user access of AmazonSESFullAccess
+    - In Amazon SES: Create an Idnetity
+    - Verify your domain name
+    - Verify your email address
+    - Install AWS SDK - v3
+    - Code example  https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses
+    - Setup Ses client
+    - Access credentials should be created in IAM under SecurityCredentials Tab
+    - Add the credentials to the env file
+    - Write code for SesClient
+    - Write code for sending email address
+    - Make the email dynamic by passing more params to the run function  

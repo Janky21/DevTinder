@@ -6,6 +6,8 @@ import profileRouter from "./routes/profileRouter.js";
 import requestRouter from "./routes/requestRouter.js";
 import userRouter from "./routes/userRouter.js";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 const PORT = 7777;

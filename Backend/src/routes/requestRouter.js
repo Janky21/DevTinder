@@ -2,6 +2,7 @@ import Router from "express";
 import userAuth from "../middlewares/auth.js";
 import ConnectionRequest from "../models/connectionRequest.js";
 import User from "../models/user.js";
+import  run  from "../utils/sendEmail.js";
 
 const requestRouter = Router();
 
@@ -42,6 +43,9 @@ requestRouter.post(
       });
 
       const data = await connectionRequest.save();
+
+      const emailRes = await run();
+      console.log(emailRes);
 
       res.json({
         message: `${req.user.firstName} is ${status} in ${toUser.firstName}`,
